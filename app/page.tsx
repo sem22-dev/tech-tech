@@ -5,7 +5,6 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import Hero from "@/components/hero";
-import ApexOptions from 'react-apexcharts';
 
 const getFollowerCount = async () => {
   const res = await fetch(`http://35.154.19.254:3000/followercount`);
@@ -86,12 +85,11 @@ function App() {
     ],
     
   });
-
   useEffect(() => {
     const fetchData = async () => {
       const followerData = await getFollowerCount();
       const newFollowerCount = followerData.followtech;
-
+  
       setChartData((prevChartData) => {
         const newData = [...prevChartData.series[0].data, newFollowerCount];
         return {
@@ -101,16 +99,19 @@ function App() {
       });
       setFollowerCount(newFollowerCount);
     };
-
+  
     // Fetch initially
     fetchData();
-
-    // Fetch every 3 seconds
-    const intervalId = setInterval(fetchData, 3000);
-
-    // Clean up the interval on component unmount
-    return () => clearInterval(intervalId);
+  
+    // Fetch every 3 seconds, but only if running in the browser
+    if (typeof window !== 'undefined') {
+      const intervalId = setInterval(fetchData, 3000);
+  
+      // Clean up the interval on component unmount
+      return () => clearInterval(intervalId);
+    }
   }, []); // Empty dependency array means it only runs once on mount
+  
 
   return (
     <div className="App">
