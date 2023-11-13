@@ -10,10 +10,15 @@ export default function Hero(){
 
     return(
         <main className="flex flex-col gap-4 justify-center items-center">
-            <h1 className=" text-yellow-300 font-semibold">FOLLOW HAHAHA</h1>
-            <span onClick={handleFollow} className=" cursor-pointer px-4 py-2 bg-white text-black">
-            Tap to Follow
-            </span>
+            <h1 className=" text-yellow-300 font-semibold">Testing mode</h1>
+          <div className="flex items-center gap-4">
+          <button onClick={handleFollow} className=" cursor-pointer px-4 py-2 bg-white text-black">
+            Follow
+            </button>
+            <button onClick={handleFollow} className=" cursor-pointer px-4 py-2 bg-white text-black">
+            Unfollow
+            </button>
+          </div>
         </main>
     )
 }
