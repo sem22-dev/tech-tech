@@ -8,7 +8,7 @@ import Chart from "react-apexcharts";
 import Hero from "@/components/hero";
 
 const getFollowerCount = async () => {
-    const res = await fetch('https://tech-tech-gamma.vercel.app/api/followercount'); // Updated URL
+    const res = await fetch('https://tech-tech-gamma.vercel.app/api/followerCount'); // Updated URL
     const data = await res.json();
     return data;
   };
